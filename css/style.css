@@ -38,13 +38,17 @@ main {
     display: flex;
     flex-direction: column;
 }
+
 .thumbnail {
     width: 100%;
     height: 20%;
-    /* debug */
-    border: 1px solid black;
 }
 
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 /* regole img */
 .image-container {
     width: 100%;
@@ -60,10 +64,18 @@ main {
     object-position: 0 30%;
 }
 
-.image-container.active {
-    display: block;
+ /* regole testo immagini */
+.txt-gioco {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    color: #fff;
+    text-align: end;
+    display: none;
 }
-
+.titolo {
+    font-size: 1.2rem;
+}
 /* regole bottoni next - prev */
 .btn {
     display: flex;
@@ -85,13 +97,18 @@ main {
 .btn-top {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 10%;
     transform: translate(-50%, 50%);
 }
 
 .btn-bottom {
     position: absolute;
-    bottom: 0;
-    left: 50%;
+    bottom: 10%;
+    left: 10%;
     transform: translate(-50%, -50%);
+    z-index: 300;
+}
+
+.active {
+    display: block;
 }

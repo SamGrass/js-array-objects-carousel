@@ -29,16 +29,35 @@
         } 
     ];
 
-    const itemContainer = document.querySelector(".carosello");
+    const itemContainer = document.querySelector(".col-1");
+    const thumbContainer = document.querySelector(".col-2");
     // creo un ciclo nel quale ottengo gli elementi
-
+    images.forEach((immagine) => {
+        let imageElement = 
+                    `<div class="image-container">
+                        <img src="${immagine.image}" alt="">
+                    </div>
+                    <div class="txt-gioco">
+                        <div class="titolo">${immagine.title}</div>
+                        <div>${immagine.text}</div>
+                    </div>`
+        let imageThumb = 
+                            `<div class="thumbnail">
+                                <img src="${immagine.image}" alt="">
+                            </div>`
+        itemContainer.innerHTML += imageElement;
+        thumbContainer.innerHTML += imageThumb;
+    });
     // seleziono gli image-container nell'html
     const imageContainer = document.getElementsByClassName("image-container");
+    const txtContainer = document.getElementsByClassName("txt-gioco");
 
     let activeImage = 0;
+    let activeTxt = 0;
 
     // la prima immagine dorvà avere la classe active 
     imageContainer[activeImage].classList.add("active");
+    txtContainer[activeTxt].classList.add("active");
     console.log(imageContainer[0]);
 
     // seleziono i bottoni
@@ -50,25 +69,31 @@
     // click next 
     next.addEventListener ("click",
         function() {
-            if (activeImage < imageList.length - 1) {
+            if (activeImage < images.length - 1) {
                 // rimuovo la classe al vecchio valore
                 imageContainer[activeImage].classList.remove("active");
+                txtContainer[activeTxt].classList.remove("active");
 
                 // deve aumentare il valore di active image
                 activeImage++;
+                activeTxt++;
 
                 // aggiungo la classe al nuovo valore
                 imageContainer[activeImage].classList.add("active");
+                txtContainer[activeTxt].classList.add("active");
 
                 console.log(activeImage);
             }   else {
                 imageContainer[activeImage].classList.remove("active");
+                txtContainer[activeTxt].classList.remove("active");
 
                 // deve aumentare il valore di active image
                 activeImage = 0;
+                activeTxt = 0;
 
                 // aggiungo la classe al nuovo valore
                 imageContainer[activeImage].classList.add("active");
+                txtContainer[activeTxt].classList.add("active");
             }
         } 
     );
@@ -81,22 +106,27 @@
 
                 // rimuovo la classe al vecchio valore
                 imageContainer[activeImage].classList.remove("active");
+                txtContainer[activeTxt].classList.remove("active");
 
                 // deve aumentare il valore di active image
                 activeImage--;
+                activeTxt--;
 
                 // aggiungo la classe al nuovo valore
                 imageContainer[activeImage].classList.add("active");
+                txtContainer[activeTxt].classList.add("active");
 
                 console.log(activeImage);
             } else {
                 imageContainer[activeImage].classList.remove("active");
+                txtContainer[activeTxt].classList.remove("active");
 
                 // deve aumentare il valore di active image
-                activeImage = imageList.length - 1;
-
+                activeImage = images.length - 1;
+                activeTxt = images.length -1 ;
                 // aggiungo la classe al nuovo valore
                 imageContainer[activeImage].classList.add("active");
+                txtContainer[activeTxt].classList.add("active");
             }
             
         }
